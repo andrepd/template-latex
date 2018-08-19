@@ -8,10 +8,6 @@
 
 %\setlength{\parskip}{.05em}
 
-% Pacote hyperref ---------------
-	%\usepackage{hyperref}
-	% Cria hiperligacoes dentro do documento para saltar entre partes; ha muitas interferencias com outros pacotes e pode dar problemas
-
 % Pacotes para LaTeX -------------
 	\begingroup\expandafter\expandafter\expandafter\endgroup
 	\expandafter\ifx\csname IncludeInRelease\endcsname\relax
@@ -30,6 +26,7 @@
 % Pacotes para Portugues ----------
 	\usepackage[utf8]{inputenc}
 	\usepackage[portuguese]{babel}
+	\usepackage{ordinalpt}
 	
 	\usepackage{indentfirst}
 	% Indenta a primeira linha dos paragrafos
@@ -46,10 +43,11 @@
 	% Tabelas com melhor aparencia
 	\usepackage{array}
 	% Melhor controlo e aparencia de colunas
-	\usepackage{tabularx}
-	% Dimensionamento automatico de colunas
-	\usepackage{longtable}
-	% Para criar tabelas longas
+	\usepackage{tabu}
+	% Pacote avançado de tabelas
+	%\usepackage{diagbox}
+	%\usepackage{makecell}
+	% Mais extras para tabelas
 
 % Imagens -----------------------------
 	\usepackage{graphicx}
@@ -64,31 +62,28 @@
 	\usepackage{amssymb}
 	%\usepackage{fixmath}
 	% Ambiente e simbolos para matematica - necessarios se se usar matematica. O fixmath corrige alguns problemas com o pacote de simbolos.
-	%\usepackage{amsthm}
+	\usepackage{amsthm}
 	% Ambiente para escrever teoremas
 	\usepackage{mathtools}
 	% Mais ferramentas de matemática
 	\usepackage{nicefrac}
 	% Permite usar fracções em texto, com o comando \nicefrac[]{}{}
 	\usepackage{siunitx}
-	% Permite usar sistemas de unidades e colunas de tabelas alinhadas pelo ponto decimal. Para escrever unidades: \si{m/s}. Para formatar números \num{2.99e6}
-	\usepackage{blindtext}
+	% Permite usar sistemas de unidades bem como formatar números com incerteza e notação científica. Para escrever unidades: \si{m/s}. Para formatar números \num{2.99e6}
 	
 % Para por codigo no documento --------------
 	\usepackage{xcolor}
-	\definecolor{gray1}{rgb}{0.92,0.92,0.92}
-	\definecolor{gray2}{rgb}{0.95,0.95,0.95}
-	\definecolor{gray3}{rgb}{0.5,0.5,0.5}
+	\definecolor{grayodd}{rgb}{0.92,0.92,0.92}
+	\definecolor{grayeven}{rgb}{0.95,0.95,0.95}
 				
 	\usepackage{listings}
 	
-	%\definecolor{mygreen}{rgb}{0,0.6,0}
 	\definecolor{commentgreen}{rgb}{.2,0.6,.2}
 	\definecolor{mygray}{rgb}{0.5,0.5,0.5}
 	\definecolor{stringmauve}{rgb}{0.58,0,0.82}
 	
 	\usepackage{lstlinebgrd}
-	\lstset{linebackgroundcolor={\ifodd\value{lstnumber}\color{gray1}\else\color{gray2}\fi}}
+	\lstset{linebackgroundcolor={\ifodd\value{lstnumber}\color{grayodd}\else\color{grayeven}\fi}}
 %	E preciso substituir o ficheiro lstlinebgrd.sty da distribuicao pelo que vem junto nesta pasta. O ficheiro oficial tem um erro quando ha um line break no codigo  %TODO
 	\usepackage{inconsolata}
 	\lstset{
@@ -114,34 +109,34 @@
 % Extras ------------------
 	\usepackage{epstopdf}  % Para os gráficos do gnuplot funcionarem
 	\epstopdfsetup{outdir=./}
-	%\usepackage{enumerate}
-	\usepackage{enumitem}  % Para personalisar enumerates e itemizes
+	\usepackage[shortlabels]{enumitem}  % Para personalisar enumerates e itemizes (ex: \begin{enumerate}[1)]...)
 	\usepackage{float}  % Permite usar \begin{figure/table/etc}[H]... para forçar os floats a ficarem no sítio
-	\usepackage{placeins}  % Para controlar floats
+	\usepackage{placeins}  % Dá um comando \FloatBarrier para impedir os floats de passarem esse ponto
 	\usepackage{physics}  % Se deus fosse um pacote seria este
 
-	\usepackage{url}  % Links com \url{}
-	%\usepackage{makecell}  % Fazer tabelas mais complicadas (usei para estrutura)
-	%\usepackage{mhchem}  % Reaccoes quimicas
+	%\usepackage[version=4]{mhchem}  % Reaccoes quimicas
 	
-	\newcommand{\overbar}[1]{\mkern 1.5mu\overline{\mkern-1.5mu#1\mkern-1.5mu}\mkern 1.5mu}
+	%\usepackage{blkarray}  % Matrizes por blocos
+	%\usepackage[misc]{ifsym}  % Vários símbolos extra, todos bonitinhos em METAFONT
+	
+	\newcommand{\overbar}[1]{\mkern 1.5mu\overline{\mkern-1.5mu#1\mkern-1.5mu}\mkern 1.5mu}  % Barra para spinors (gamma 0 psi dagger)
 
-	\usepackage[makeroom]{cancel}  % \cancel{} para cortar termos
-	\renewcommand{\CancelColor}{\color{gray}}
+	\usepackage[makeroom]{cancel}\renewcommand\CancelColor{\color{gray}}  % \cancel{} para cortar termos
+	
 	\usepackage{amsfonts}
 
 	\newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}}  % \numberthis para numerar equações. Contrário de \nonumber. Muito útil para só botar número no final de um align*
 
 	\newcommand{\CPP}{C\nolinebreak\hspace{-.05em}\raisebox{.4ex}{\tiny\bf +}\nolinebreak\hspace{-.05em}\raisebox{.4ex}{\tiny\bf +}}  % \CPP para escrever C++
 
-	%\usepackage{blkarray}  % Matrizes por blocos
-	%\usepackage[misc]{ifsym}  % Vários símbolos extra, todos bonitinhos em METAFONT
-
+	%\usepackage{blindtext}  % Para colocar placeholder text
+		
 	\allowdisplaybreaks[3]  % Para o align poder fluir para várias páginas
+
 
 % Tikz ------------------
 	\usepackage{tikz}
-	\usetikzlibrary{automata,arrows,positioning,calc,decorations}
+	%\usetikzlibrary{automata,arrows,positioning,calc,decorations}
 
 % User ------------------
 	% Para mudar o estilo das secções, subsecções, rodapés, etc.
@@ -149,14 +144,25 @@
 	%\renewcommand \thesubsection {\arabic{subsection}. }
 	%\renewcommand \thefootnote   {$\star$}
 	
-	\newcommand{\eqv}{\Leftrightarrow}  % Atalho para o <=> curto (alternativa \iff)
-	\newcommand{\imp}{\Rightarrow}  % Atalho para o => curto (alternativa \implies)
-%\DeclareRobustCommand\eqv{\;\Leftrightarrow\;}
+	\newcommand{\eqv}{\mathrel{\Leftrightarrow}}  % Atalho para o <=> curto (alternativa \iff)
+	\newcommand{\imp}{\mathrel{\Rightarrow}}  % Atalho para o => curto (alternativa \implies)
 	%\renewcommand{\vec}{\vb}  % Mudar o \vec para negrito
 	
 	%\newcommand{\nome}{definição}  % Para fazer mais comandos personalizados
 
 
+
+% Hyperref --------------
+	\definecolor{linkblue}{HTML}{0066cc}
+	\usepackage[
+		%hidelinks,  % Comentar/descomentar para tirar as cores dos links: útil para imprimir!
+		unicode,
+		colorlinks=true,
+		linkcolor=MidnightBlue,
+		citecolor=Green,
+		urlcolor=linkblue,
+		pagebackref=true
+	]{hyperref}
 
 
 
@@ -176,7 +182,7 @@
 
 \maketitle
 
-
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. 
 
 \end{document}
 
@@ -187,8 +193,6 @@
 % --------------------
 % ----- Snippets -----
 % --------------------
-
-%\underline{}\section{Apêndice}
 
 %\lstinputlisting[language=C++,caption={Caption}]{main.cpp}
 %\vspace{4pt}
@@ -202,18 +206,3 @@
 %\end{figure}
 
 %\begin{enumerate}[wide]
-
-%\begin{thebibliography}{9}
-%
-%\bibitem{1}
-%  Doe, J. and Bar, F.,
-%  \emph{Name of publication}.
-%  Name of magazine,
-%  1984.
-%
-%\end{thebibliography}
-
-%\bibliographystyle{plain}
-%\bibliography{relatorio}
-
-%\printbibliography
