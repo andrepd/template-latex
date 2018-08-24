@@ -23,7 +23,7 @@
 	\usepackage[stretch=10]{microtype}
 	% Melhora o espaçamento entre as palavras, reduz a hifenação, formata melhor o bloco de texto.
 
-% Pacotes para Portugues ----------
+% Pacotes para Portugues ---------
 	\usepackage[utf8]{inputenc}
 	\usepackage[portuguese]{babel}
 	\usepackage{ordinalpt}
@@ -38,7 +38,7 @@
 	\usepackage[T1]{fontenc}
 	% Tipo de letra vectorial, com melhor qualidade, para usar o T1. Se o tipo de letra aparecer pixelizado, activar este pacote. Para evitar utilizar o lmodern, pode-se instalar o pacote cm-super.
 	
-% Tabelas ----------------------
+% Tabelas ------------------------
 	\usepackage{booktabs}
 	% Tabelas com melhor aparencia
 	\usepackage{array}
@@ -49,7 +49,7 @@
 	%\usepackage{makecell}
 	% Mais extras para tabelas
 
-% Imagens -----------------------------
+% Imagens ------------------------
 	\usepackage{graphicx}
 	% Para introduzir graficos	
 	\usepackage[font={small}]{caption}
@@ -57,11 +57,12 @@
 	\usepackage{subcaption}
 	% Para por legendas em sub-figuras
 
-% Matematica ------------------
+% Matematica ---------------------
 	\usepackage{amsmath}
 	\usepackage{amssymb}
 	%\usepackage{fixmath}
-	% Ambiente e simbolos para matematica - necessarios se se usar matematica. O fixmath corrige alguns problemas com o pacote de simbolos.
+	\allowdisplaybreaks[3]
+	% Ambiente e simbolos para matematica - necessarios se se usar matematica. O fixmath corrige alguns problemas com o pacote de simbolos. O allowdisplaybreaks deixa o align fluir por várias páginas
 	\usepackage{amsthm}
 	% Ambiente para escrever teoremas
 	\usepackage{mathtools}
@@ -71,8 +72,8 @@
 	\usepackage{siunitx}
 	% Permite usar sistemas de unidades bem como formatar números com incerteza e notação científica. Para escrever unidades: \si{m/s}. Para formatar números \num{2.99e6}
 	
-% Para por codigo no documento --------------
-	\usepackage{xcolor}
+% Para por codigo no documento ---
+	\usepackage[svgnames]{xcolor}
 	\definecolor{grayodd}{rgb}{0.92,0.92,0.92}
 	\definecolor{grayeven}{rgb}{0.95,0.95,0.95}
 				
@@ -106,11 +107,26 @@
 		literate={á}{{\'a}}1 {ã}{{\~a}}1 {â}{{\^a}}1 {à}{{\`a}}1 {é}{{\'e}}1 {É}{{\'E}}1 {ê}{{\^e}}1 {ê}{{\^e}}1 {Ê}{{\^E}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {õ}{{\~o}}1 {ô}{{\^o}}1 {ú}{{\'u}}1 {ç}{{\c c}}1 {λ}{{$\lambda$}}1 {θ}{{$\theta$}}1 {π}{{$\pi$}}1 {√}{{$\sqrt{}$}}1 {ẋ}{{$\dot{x}$}}1 {ψ}{{$\psi$}}1 {Σ}{{$\Sigma$}}1 {σ}{{$\sigma$}}1, 
 	}
 
-% Extras ------------------
+% Bibliografia -------------------
+	% Biblatex: super personalisável (descomentar para activar)
+	%\usepackage[
+	%	hyperref=true,
+	%	backref=true,
+	%	backend=bibtex,
+	%	style=numeric,
+	%	citestyle=numeric-comp,
+	%	sorting=none,
+	%]{biblatex}
+	% Ficheiro bibfile.bib contém a bibliografia em formato bibtex
+	%\bibliography{bibfile}
+	
+% Extras -------------------------
 	\usepackage{epstopdf}  % Para os gráficos do gnuplot funcionarem
 	\epstopdfsetup{outdir=./}
-	\usepackage[shortlabels]{enumitem}  % Para personalisar enumerates e itemizes (ex: \begin{enumerate}[1)]...)
+	
+	\usepackage[shortlabels]{enumitem}  % Para personalisar enumerates e itemizes com sintaxe fácil (ex: \begin{enumerate}[Pergunta 1)]...)
 	\usepackage{float}  % Permite usar \begin{figure/table/etc}[H]... para forçar os floats a ficarem no sítio
+	\usepackage{flafter}  % Faz com que os floats não apareçam antes do sítio onde estão no documento
 	\usepackage{placeins}  % Dá um comando \FloatBarrier para impedir os floats de passarem esse ponto
 	\usepackage{physics}  % Se deus fosse um pacote seria este
 
@@ -123,6 +139,7 @@
 
 	\usepackage[makeroom]{cancel}\renewcommand\CancelColor{\color{gray}}  % \cancel{} para cortar termos
 	
+	\usepackage[super]{nth}  % Ordinais: \nth{123} -> 123^{rd} (mesmo em text mode)
 	\usepackage{amsfonts}
 
 	\newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}}  % \numberthis para numerar equações. Contrário de \nonumber. Muito útil para só botar número no final de um align*
@@ -130,13 +147,31 @@
 	\newcommand{\CPP}{C\nolinebreak\hspace{-.05em}\raisebox{.4ex}{\tiny\bf +}\nolinebreak\hspace{-.05em}\raisebox{.4ex}{\tiny\bf +}}  % \CPP para escrever C++
 
 	%\usepackage{blindtext}  % Para colocar placeholder text
+	
+	%Cores do meu template de gnuplot: gpN = lt N
+	\definecolor{gp1}{HTML}{e41a1c}
+	\definecolor{gp2}{HTML}{377eb8}
+	\definecolor{gp3}{HTML}{4daf4a}
+	\definecolor{gp4}{HTML}{984ea3}
+	\definecolor{gp5}{HTML}{ff7f00}
+	\definecolor{gp6}{HTML}{ffff33}
+	\definecolor{gp7}{HTML}{a65628}
+	\definecolor{gp8}{HTML}{f781bf}
 		
-	\allowdisplaybreaks[3]  % Para o align poder fluir para várias páginas
-
-
 % Tikz ------------------
 	\usepackage{tikz}
 	%\usetikzlibrary{automata,arrows,positioning,calc,decorations}
+
+% Hyperref --------------
+	\definecolor{linkblue}{HTML}{0066cc}
+	\usepackage[
+		%hidelinks,  % Comentar/descomentar para tirar as cores dos links: útil para imprimir!
+		unicode,
+		colorlinks=true,
+		linkcolor=MidnightBlue,
+		citecolor=Green,
+		urlcolor=linkblue,
+	]{hyperref}
 
 % User ------------------
 	% Para mudar o estilo das secções, subsecções, rodapés, etc.
@@ -151,18 +186,6 @@
 	%\newcommand{\nome}{definição}  % Para fazer mais comandos personalizados
 
 
-
-% Hyperref --------------
-	\definecolor{linkblue}{HTML}{0066cc}
-	\usepackage[
-		%hidelinks,  % Comentar/descomentar para tirar as cores dos links: útil para imprimir!
-		unicode,
-		colorlinks=true,
-		linkcolor=MidnightBlue,
-		citecolor=Green,
-		urlcolor=linkblue,
-		pagebackref=true
-	]{hyperref}
 
 
 
