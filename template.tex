@@ -17,8 +17,8 @@
 
 % Aparencia ----------------------
 	%\usepackage[a4paper,top=3cm, bottom=3cm, left=3cm, right=3cm]{geometry}
-	\usepackage[a4paper]{geometry}
 	% Acertar aspecto da pagina, como as margens
+	%\usepackage{showframe}  % Descomentar para fazer debug do layout
 		
 	\usepackage[stretch=10]{microtype}
 	% Melhora o espaçamento entre as palavras, reduz a hifenação, formata melhor o bloco de texto.
@@ -159,7 +159,7 @@
 		
 % Tikz ------------------
 	\usepackage{tikz}
-	%\usetikzlibrary{automata,arrows,positioning,calc,decorations}
+	%\usetikzlibrary{automata,arrows,positioning,calc,decorations,arrows.meta}
 
 % Hyperref --------------
 	\definecolor{linkblue}{HTML}{0066cc}
@@ -178,8 +178,8 @@
 	%\renewcommand \thesubsection {\arabic{subsection}. }
 	%\renewcommand \thefootnote   {$\star$}
 	
-	\newcommand{\eqv}{\mathrel{\Leftrightarrow}}  % Atalho para o <=> curto (alternativa \iff)
-	\newcommand{\imp}{\mathrel{\Rightarrow}}  % Atalho para o => curto (alternativa \implies)
+	\newcommand{\eqv}{\mathrel{\mkern3mu\Leftrightarrow\mkern3mu}}  % Atalho para o <=> curto (alternativa \iff)
+	\newcommand{\imp}{\mathrel{\mkern3mu\Rightarrow\mkern3mu}}  % Atalho para o => curto (alternativa \implies)
 	%\renewcommand{\vec}{\vb}  % Mudar o \vec para negrito
 	
 	%\newcommand{\nome}{definição}  % Para fazer mais comandos personalizados
