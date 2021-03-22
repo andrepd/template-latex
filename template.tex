@@ -15,26 +15,28 @@
 	\fi
 	%Resolve problemas comuns
 
-% Aparencia ----------------------
-	%\usepackage[a4paper,top=3cm, bottom=3cm, left=3cm, right=3cm]{geometry}
+% Aparência ----------------------
+	%\usepackage[]{geometry}
 	% Acertar aspecto da pagina, como as margens
 	%\usepackage{showframe}  % Descomentar para fazer debug do layout
 		
 	\usepackage[stretch=10]{microtype}
 	% Melhora o espaçamento entre as palavras, reduz a hifenação, formata melhor o bloco de texto.
 
-% Pacotes para Portugues ---------
+% Pacotes para Português ---------
 	\usepackage[utf8]{inputenc}
 	\usepackage[portuguese]{babel}
+	\usepackage{csquotes}
 	\usepackage{ordinalpt}
 	
 	\usepackage{indentfirst}
 	% Indenta a primeira linha dos paragrafos
-		
-	%\usepackage{libertineRoman}
 	
+% Fontes -------------------------
+	%\usepackage{libertineRoman}
 	\usepackage{libertine}
 	\usepackage{lmodern}
+	\usepackage{inconsolata}
 	\usepackage[T1]{fontenc}
 	% Tipo de letra vectorial, com melhor qualidade, para usar o T1. Se o tipo de letra aparecer pixelizado, activar este pacote. Para evitar utilizar o lmodern, pode-se instalar o pacote cm-super.
 	
@@ -50,42 +52,44 @@
 	% Mais extras para tabelas
 
 % Imagens ------------------------
+	\usepackage[svgnames]{xcolor}
 	\usepackage{graphicx}
 	% Para introduzir graficos	
 	\usepackage[font={small}]{caption}
 	% Pacote de legendas de imagens/tabelas	
 	\usepackage{subcaption}
 	% Para por legendas em sub-figuras
+	\usepackage{epstopdf}
+	\epstopdfsetup{outdir=./}
+	% Para os gráficos do gnuplot funcionarem
 
-% Matematica ---------------------
+% Matemática ---------------------
 	\usepackage{amsmath}
 	\usepackage{amssymb}
 	%\usepackage{fixmath}
+	\usepackage{amsfonts}
 	\allowdisplaybreaks[3]
 	% Ambiente e simbolos para matematica - necessarios se se usar matematica. O fixmath corrige alguns problemas com o pacote de simbolos. O allowdisplaybreaks deixa o align fluir por várias páginas
 	\usepackage{amsthm}
 	% Ambiente para escrever teoremas
 	\usepackage{mathtools}
 	% Mais ferramentas de matemática
-	\usepackage{nicefrac}
+	%\usepackage{nicefrac}
 	% Permite usar fracções em texto, com o comando \nicefrac[]{}{}
 	\usepackage{siunitx}
 	% Permite usar sistemas de unidades bem como formatar números com incerteza e notação científica. Para escrever unidades: \si{m/s}. Para formatar números \num{2.99e6}
 	
-% Para por codigo no documento ---
-	\usepackage[svgnames]{xcolor}
-	\definecolor{grayodd}{rgb}{0.92,0.92,0.92}
-	\definecolor{grayeven}{rgb}{0.95,0.95,0.95}
-				
+% Para por código no documento ---
 	\usepackage{listings}
 	
+	\definecolor{grayodd}{rgb}{0.92,0.92,0.92}
+	\definecolor{grayeven}{rgb}{0.95,0.95,0.95}
 	\definecolor{commentgreen}{rgb}{.2,0.6,.2}
 	\definecolor{stringmauve}{rgb}{0.58,0,0.82}
 	
 	\usepackage{lstlinebgrd}
 	\lstset{linebackgroundcolor={\ifodd\value{lstnumber}\color{grayodd}\else\color{grayeven}\fi}}
-%	E preciso substituir o ficheiro lstlinebgrd.sty da distribuicao pelo que vem junto nesta pasta. O ficheiro oficial tem um erro quando ha um line break no codigo  %TODO
-	\usepackage{inconsolata}
+	% É preciso substituir o ficheiro lstlinebgrd.sty da distribuicao pelo que vem junto nesta pasta. O ficheiro oficial tem um erro quando ha um line break no codigo  %TODO
 	\lstset{
 		%keywordstyle=\bfseries
 		breaklines=true,
@@ -107,23 +111,19 @@
 	}
 
 % Bibliografia -------------------
-	% Biblatex: super personalisável (descomentar para activar)
-	%\usepackage[
-	%	hyperref=true,
-	%	backref=true,
-	%	backend=bibtex,
-	%	style=numeric,
-	%	citestyle=numeric-comp,
-	%	sorting=none,
-	%]{biblatex}
-	% Ficheiro bibfile.bib contém a bibliografia em formato bibtex
-	%\bibliography{bibfile}
+	\usepackage[
+		hyperref=true,
+		backref=true,
+		backend=bibtex,
+		style=numeric,
+		citestyle=numeric-comp,
+		sorting=none,
+	]{biblatex}
+	% Ficheiro .bib que contém a bibliografia em formato bibtex
+	\bibliography{}
 	
 % Extras -------------------------
-	\usepackage{epstopdf}  % Para os gráficos do gnuplot funcionarem
-	\epstopdfsetup{outdir=./}
-	
-	\usepackage[shortlabels,inline]{enumitem}  % Para personalisar enumerates e itemizes com sintaxe fácil (ex: \begin{enumerate}[Pergunta 1)]...)
+	\usepackage[shortlabels,inline]{enumitem}  % Para personalisar enumerates e itemizes com sintaxe fácil (ex: \begin{enumerate}[Pergunta 1.], e ele faz "Pergunta 1., Pergunta 2., etc)
 	\usepackage{float}  % Permite usar \begin{figure/table/etc}[H]... para forçar os floats a ficarem no sítio
 	\usepackage{flafter}  % Faz com que os floats não apareçam antes do sítio onde estão no documento
 	\usepackage{placeins}  % Dá um comando \FloatBarrier para impedir os floats de passarem esse ponto
@@ -139,14 +139,14 @@
 	\usepackage[makeroom]{cancel}\renewcommand\CancelColor{\color{gray}}  % \cancel{} para cortar termos
 	
 	\usepackage[super]{nth}  % Ordinais: \nth{123} -> 123^{rd} (mesmo em text mode)
-	\usepackage{amsfonts}
 
 	\newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}}  % \numberthis para numerar equações. Contrário de \nonumber. Muito útil para só botar número no final de um align*
 
 	\newcommand{\CPP}{C\nolinebreak\hspace{-.05em}\raisebox{.4ex}{\tiny\bf +}\nolinebreak\hspace{-.05em}\raisebox{.4ex}{\tiny\bf +}}  % \CPP para escrever C++
-
-	%\usepackage{blindtext}  % Para colocar placeholder text
 	
+	\newcommand{\eqv}{\mathrel{\mkern3mu\Leftrightarrow\mkern3mu}}  % Atalho para o <=> curto (alternativa \iff)
+	\newcommand{\imp}{\mathrel{\mkern3mu\Rightarrow\mkern3mu}}  % Atalho para o => curto (alternativa \implies)
+
 	%Cores do meu template de gnuplot: gpN = lt N
 	\definecolor{gp1}{HTML}{e41a1c}
 	\definecolor{gp2}{HTML}{377eb8}
@@ -174,15 +174,18 @@
 
 % User ------------------
 	% Para mudar o estilo das secções, subsecções, rodapés, etc.
-	%\renewcommand \thesection    {}
-	%\renewcommand \thesubsection {\arabic{subsection}. }
-	%\renewcommand \thefootnote   {$\star$}
+	%\renewcommand\thesection   {}
+	%\renewcommand\thesubsection{\arabic{subsection}. }
 	
-	\newcommand{\eqv}{\mathrel{\mkern3mu\Leftrightarrow\mkern3mu}}  % Atalho para o <=> curto (alternativa \iff)
-	\newcommand{\imp}{\mathrel{\mkern3mu\Rightarrow\mkern3mu}}  % Atalho para o => curto (alternativa \implies)
-	%\renewcommand{\vec}{\vb}  % Mudar o \vec para negrito
+	% Para usar *,† nas footnotes em vez de números
+	%\usepackage[symbol*,perpage]{footmisc}
+	%\renewcommand{\thefootnote}{\fnsymbol{footnote}}
 	
-	%\newcommand{\nome}{definição}  % Para fazer mais comandos personalizados
+	% Para mudar o \vec para negrito
+	%\renewcommand\vec{\vb}  
+	
+	% Para fazer mais comandos personalizados
+	%\newcommand\nome[num de argumentos se houver]{definição}
 
 
 
@@ -226,5 +229,3 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 %    \label{graph:graph0}
 %  \end{center}
 %\end{figure}
-
-%\begin{enumerate}[wide]
